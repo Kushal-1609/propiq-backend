@@ -120,21 +120,21 @@ def build_model_input(data):
         print(f"\n[DEBUG] Building model input...")
         
         # Clip numeric features to safe training bounds to reduce OOD extrapolation.
-        area_sqft = max(400.0, min(6000.0, float(data.get('Area_sqft', 0))))
-        bedrooms = int(max(1, min(6, int(data.get('Bedrooms', 0)))))
-        bathrooms = int(max(1, min(6, int(data.get('Bathrooms', 0)))))
-        year_built = int(data.get('Year_Built', 2000))
-        parking_spaces = int(data.get('Parking_Spaces', 0))
-        floor_number = int(data.get('Floor_Number', 0))
-        distance_to_city = max(0.5, min(50.0, float(data.get('Distance_to_City_Center_km', 0))))
-        balcony_count = int(data.get('Balcony_Count', 0))
+        area_sqft = max(400.0, min(6000.0, float(data.get('area_sqft', 0))))
+        bedrooms = int(max(1, min(6, int(data.get('bedrooms', 0)))))
+        bathrooms = int(max(1, min(6, int(data.get('bathrooms', 0)))))
+        year_built = int(data.get('year_built', 2000))
+        parking_spaces = int(data.get('parking_spaces', 0))
+        floor_number = int(data.get('floor_number', 0))
+        distance_to_city = max(0.5, min(50.0, float(data.get('distance_to_city_center_km', 0))))
+        balcony_count = int(data.get('balcony_count', 0))
         
         # Extract 5 categorical features
-        location = data.get('Location', '')
-        property_type = data.get('Property_Type', '')
-        furnishing_status = data.get('Furnishing_Status', '')
-        lift_availability = data.get('Lift_Availability', '')
-        direction_facing = data.get('Direction_Facing', '')
+        location = data.get('location', '')
+        property_type = data.get('property_type', '')
+        furnishing_status = data.get('furnishing_status', '')
+        lift_availability = data.get('lift_availability', '')
+        direction_facing = data.get('direction_facing', '')
 
         property_age = 2026 - year_built
         beds_baths = bedrooms + bathrooms
@@ -219,10 +219,10 @@ def preprocess_input(data):
         print(json.dumps(data, indent=2))
         
         # Validate required fields
-        required_fields = ['Area_sqft', 'Bedrooms', 'Bathrooms', 'Year_Built', 
-                          'Parking_Spaces', 'Floor_Number', 'Distance_to_City_Center_km',
-                          'Balcony_Count', 'Location', 'Property_Type', 
-                          'Furnishing_Status', 'Lift_Availability', 'Direction_Facing']
+        required_fields = ['area_sqft', 'bedrooms', 'bathrooms', 'year_built', 
+                  'parking_spaces', 'floor_number', 'distance_to_city',
+                  'balcony_count', 'property_type', 'furnishing_status', 
+                  'lift_availability', 'direction_facing']
         
         missing = [field for field in required_fields if field not in data or data[field] == '']
         if missing:
