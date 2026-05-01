@@ -4,4 +4,5 @@ flask-cors
 pandas
 numpy
 joblib
-scikit-learn==1.6.1
+scikit-learn==1.8.0
+Flask-Cors==4.0.0
